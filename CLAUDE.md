@@ -100,6 +100,23 @@ This repo is configured for GitHub Pages.
 - Push to `main`
 - GitHub Actions runs `.github/workflows/deploy.yml`
 - Workflow installs dependencies, builds the static export, and deploys `out/` to Pages
+- If `public/CNAME` exists, the workflow builds for a custom domain root path
+- If `public/CNAME` does not exist, the workflow builds with the GitHub Pages repo base path
+
+### Current custom domain
+- Active custom domain: `evey.site`
+- Domain file: `public/CNAME`
+- Current expectation for custom-domain builds: asset URLs must resolve from root, not from `/evey_personal`
+
+### Known custom-domain bug that was fixed
+A previous deployment served HTML on `evey.site` with CSS/JS asset URLs prefixed by `/evey_personal/...`.
+That caused styles and scripts to 404 on the custom domain and made the page look broken.
+
+Fix applied:
+- added `public/CNAME` with `evey.site`
+- updated `.github/workflows/deploy.yml` so when `public/CNAME` is present, the site builds without `BASE_PATH`
+
+If this bug appears again, first inspect the deployed HTML and confirm whether asset URLs incorrectly start with `/evey_personal/`.
 
 ### How `BASE_PATH` works
 `next.config.ts` reads `process.env.BASE_PATH`, but only uses it if it starts with `/`.
@@ -125,12 +142,12 @@ BASE_PATH=/evey_personal npm run build
 Example:
 
 ```text
-https://www.your-domain.com/
+https://evey.site/
 ```
 
 Then the build should usually use no `BASE_PATH` so asset URLs resolve from the domain root.
 
-Important: the current GitHub Actions workflow uses the GitHub Pages-provided base path output. That is correct for the default repo Pages URL. If the site is switched fully to a custom domain and assets load with a wrong `/repo-name` prefix, adjust `.github/workflows/deploy.yml` so the build runs without `BASE_PATH` for the custom-domain deployment path.
+Important: the current workflow already handles this automatically by checking whether `public/CNAME` exists.
 
 If custom-domain support is being adjusted, verify both:
 - local dev rendering
