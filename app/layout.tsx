@@ -8,9 +8,9 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Evey | Designer Portfolio",
+  title: "Evey Guan | Works",
   description:
-    "Personal portfolio site for Evey, featuring brand, campaign, and digital visual design work.",
+    "Dark minimal portfolio homepage for Evey Guan, featuring selected digital product and visual design work.",
 };
 
 export default function RootLayout({
@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN" className={`${geistSans.variable} h-full antialiased`}>
-      <body className="min-h-full bg-white text-[#404040]">{children}</body>
+      <body className="min-h-full bg-[#111111] text-[#f2f2f2]">{children}</body>
     </html>
   );
 }
