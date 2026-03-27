@@ -17,6 +17,7 @@ Install these before working on the project:
 - npm **10+** recommended
 - git
 - Claude Code
+- Python **3.x** (required for installed skills)
 
 Optional but useful:
 - GitHub CLI (`gh`) for easier repo / workflow inspection
@@ -226,12 +227,13 @@ BASE_PATH=/evey_personal npm run build
 Good first checks:
 1. Read `CLAUDE.md`
 2. Read `AGENTS.md`
-3. Read `package.json`
-4. Read `next.config.ts`
-5. Read `app/page.tsx`
-6. Read `app/layout.tsx`
-7. Read `app/globals.css`
-8. If deployment work is involved, read `.github/workflows/deploy.yml`
+3. Read `SKILLS.md` (if skills are installed)
+4. Read `package.json`
+5. Read `next.config.ts`
+6. Read `app/page.tsx`
+7. Read `app/layout.tsx`
+8. Read `app/globals.css`
+9. If deployment work is involved, read `.github/workflows/deploy.yml`
 
 ## Repo identity
 - Repository: `WangCXin/evey_personal`
